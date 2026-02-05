@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent">#19B6A8</color>
+    <color name="accent_orange">#FF9F1C</color>
+    <color name="accent_orange_dark">#E68A0F</color>
+    <color name="background">#0F0F0F</color>
+    <color name="black">#000000</color>
+    <color name="channel_card_bg">#282828</color>
+    <color name="dark_bg">#1A1A1A</color>
+    <color name="disabled">#404040</color>
+    <color name="disabled_text">#606060</color>
+    <color name="error">#E74C3C</color>
+    <color name="gray">#808080</color>
+    <color name="gray_dark">#282828</color>
+    <color name="gray_light">#B3B3B3</color>
+    <color name="info">#3498DB</color>
+    <color name="overlay_dark">#CC000000</color>
+    <color name="overlay_light">#80FFFFFF</color>
+    <color name="primary">#1DB954</color>
+    <color name="primary_dark">#138f3f</color>
+    <color name="primary_light">#1ed760</color>
+    <color name="success">#1DB954</color>
+    <color name="surface">#282828</color>
+    <color name="surface_light">#3E3E3E</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3B3B3</color>
+    <color name="text_tertiary">#808080</color>
+    <color name="transparent">#00000000</color>
+    <color name="warning">#F39C12</color>
+    <color name="white">#FFFFFF</color>
+    <string name="about">Acerca de</string>
+    <string name="about_us">Acerca de nosotros</string>
+    <string name="about_us_description">Únete a la experiencia y accede a lo...</string>
+    <string name="add_to_favorites">Agregar a favoritos</string>
+    <string name="app_name">Streamflix</string>
+    <string name="back">Volver</string>
+    <string name="btn_login">INICIAR SESIÓN</string>
+    <string name="cast">Cast</string>
+    <string name="category">Categoría</string>
+    <string name="category_all">Todos</string>
+    <string name="category_current">Actualidad</string>
+    <string name="category_kids">Infantil</string>
+    <string name="category_national">Nacional</string>
+    <string name="category_regional">Regional</string>
+    <string name="change_password">Cambiar contraseña</string>
+    <string name="channel_description">Descripción</string>
+    <string name="channel_hd">HD</string>
+    <string name="channel_logo">Logo del canal</string>
+    <string name="clear">Limpiar</string>
+    <string name="company">Empresa</string>
+    <string name="company_name">Tu Nombre de Empresa</string>
+    <string name="contact">Contacto</string>
+    <string name="contact_email">contacto@tuempresa.com</string>
+    <string name="contact_phone">+51 987 654 321</string>
+    <string name="email">Email</string>
+    <string name="error">Error</string>
+    <string name="exit_app">Exit App</string>
+    <string name="exit_confirmation_message">Are you sure you want to exit?</string>
+    <string name="favorite">Favorito</string>
+    <string name="forgot_password">¿Olvidaste la contraseña? </string>
+    <string name="fullscreen">Pantalla completa</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="home">Inicio</string>
+    <string name="loading">Cargando...</string>
+    <string name="loading_stream">Cargando transmisión...</string>
+    <string name="login_title">Iniciar Sesión</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="membership_active">Membresía Activa</string>
+    <string name="membership_inactive">Membresía Inactiva</string>
+    <string name="my_profile">Mi perfil</string>
+    <string name="name">Nombre</string>
+    <string name="no">No</string>
+    <string name="no_internet">Sin conexión a internet</string>
+    <string name="phone">Teléfono</string>
+    <string name="player_error">Error al cargar el canal</string>
+    <string name="privacy_policy">Política de privacidad</string>
+    <string name="privacy_policy_url">https://www.tuempresa.com/privacidad</string>
+    <string name="profile">Perfil</string>
+    <string name="recover_password">Recuperar</string>
+    <string name="remember_me">Recordar accesos</string>
+    <string name="remove_from_favorites">Quitar de favoritos</string>
+    <string name="retry">Reintentar</string>
+    <string name="search">Buscar</string>
+    <string name="show_password">Mostrar contraseña</string>
+    <string name="stream_error">Erro ao carregar stream</string>
+    <string name="update_profile">Actualizar mis datos</string>
+    <string name="validating_membership">Validando membresía activa</string>
+    <string name="watch_now">Ver Ahora</string>
+    <string name="yes">Yes</string>
+    <style name="ExoMediaButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
+    <style name="ExoMediaButton.Fullscreen" parent="ExoMediaButton">
+    </style>
+    <style name="ExoMediaButton.PlayPause" parent="ExoMediaButton">
+    </style>
+    <style name="ExoMediaButton.Settings" parent="ExoMediaButton">
+    </style>
+</resources>

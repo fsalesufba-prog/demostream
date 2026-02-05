@@ -1,0 +1,197 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.demo.streamflix.debug"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:4:5-67
+11-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:5:5-79
+12-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:5:22-76
+13
+14    <permission
+14-->[androidx.core:core:1.13.1] C:\Users\ferna\.gradle\caches\transforms-3\3e06eaa833b642e61a9f899d2559902b\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+15        android:name="com.demo.streamflix.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+15-->[androidx.core:core:1.13.1] C:\Users\ferna\.gradle\caches\transforms-3\3e06eaa833b642e61a9f899d2559902b\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+16        android:protectionLevel="signature" />
+16-->[androidx.core:core:1.13.1] C:\Users\ferna\.gradle\caches\transforms-3\3e06eaa833b642e61a9f899d2559902b\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+17
+18    <uses-permission android:name="com.demo.streamflix.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+18-->[androidx.core:core:1.13.1] C:\Users\ferna\.gradle\caches\transforms-3\3e06eaa833b642e61a9f899d2559902b\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+18-->[androidx.core:core:1.13.1] C:\Users\ferna\.gradle\caches\transforms-3\3e06eaa833b642e61a9f899d2559902b\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+19
+20    <application
+20-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:7:5-38:19
+21        android:name="com.demo.streamflix.StreamflixApplication"
+21-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:8:9-65
+22        android:allowBackup="true"
+22-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:9:9-35
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.13.1] C:\Users\ferna\.gradle\caches\transforms-3\3e06eaa833b642e61a9f899d2559902b\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+24        android:debuggable="true"
+25        android:extractNativeLibs="false"
+26        android:icon="@android:drawable/sym_def_app_icon"
+26-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:10:9-58
+27        android:label="@string/app_name"
+27-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:11:9-41
+28        android:roundIcon="@android:drawable/sym_def_app_icon"
+28-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:12:9-63
+29        android:supportsRtl="true"
+29-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:13:9-35
+30        android:theme="@style/Theme.AppCompat.NoActionBar"
+30-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:14:9-59
+31        android:usesCleartextTraffic="true" >
+31-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:15:9-44
+32        <meta-data
+32-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:17:9-19:76
+33            android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
+33-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:18:13-93
+34            android:value="com.demo.streamflix.util.CastOptionsProvider" />
+34-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:19:13-73
+35
+36        <activity
+36-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:21:9-30:20
+37            android:name="com.demo.streamflix.MainActivity"
+37-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:22:13-41
+38            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+38-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:24:13-122
+39            android:exported="true"
+39-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:23:13-36
+40            android:screenOrientation="portrait" >
+40-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:25:13-49
+41            <intent-filter>
+41-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:26:13-29:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:27:17-69
+42-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:27:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:28:17-77
+44-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:28:27-74
+45            </intent-filter>
+46        </activity>
+47        <activity
+47-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:32:9-36:66
+48            android:name="com.demo.streamflix.SplashActivity"
+48-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:33:13-43
+49            android:exported="true"
+49-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:34:13-36
+50            android:screenOrientation="portrait"
+50-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:35:13-49
+51            android:theme="@style/Theme.AppCompat.NoActionBar" />
+51-->C:\Users\ferna\Downloads\demostreamflix\demostream\mobile\src\main\AndroidManifest.xml:36:13-63
+52
+53        <provider
+53-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ferna\.gradle\caches\transforms-3\fecf061f787bcc42f323f5ef752bfcd1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+54            android:name="androidx.startup.InitializationProvider"
+54-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ferna\.gradle\caches\transforms-3\fecf061f787bcc42f323f5ef752bfcd1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+55            android:authorities="com.demo.streamflix.debug.androidx-startup"
+55-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ferna\.gradle\caches\transforms-3\fecf061f787bcc42f323f5ef752bfcd1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+56            android:exported="false" >
+56-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ferna\.gradle\caches\transforms-3\fecf061f787bcc42f323f5ef752bfcd1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+57            <meta-data
+57-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ferna\.gradle\caches\transforms-3\fecf061f787bcc42f323f5ef752bfcd1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+58                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+58-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ferna\.gradle\caches\transforms-3\fecf061f787bcc42f323f5ef752bfcd1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+59                android:value="androidx.startup" />
+59-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ferna\.gradle\caches\transforms-3\fecf061f787bcc42f323f5ef752bfcd1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+60            <meta-data
+60-->[io.github.jan-tennert.supabase:storage-kt-android-debug:2.4.0] C:\Users\ferna\.gradle\caches\transforms-3\e99a13dab458c6cc4ace57a44bd34b27\transformed\jetified-storage-kt-debug\AndroidManifest.xml:14:13-16:52
+61                android:name="io.github.jan.supabase.storage.SupabaseInitializer"
+61-->[io.github.jan-tennert.supabase:storage-kt-android-debug:2.4.0] C:\Users\ferna\.gradle\caches\transforms-3\e99a13dab458c6cc4ace57a44bd34b27\transformed\jetified-storage-kt-debug\AndroidManifest.xml:15:17-82
+62                android:value="androidx.startup" />
+62-->[io.github.jan-tennert.supabase:storage-kt-android-debug:2.4.0] C:\Users\ferna\.gradle\caches\transforms-3\e99a13dab458c6cc4ace57a44bd34b27\transformed\jetified-storage-kt-debug\AndroidManifest.xml:16:17-49
+63            <meta-data
+63-->[io.github.jan-tennert.supabase:gotrue-kt-android-debug:2.4.0] C:\Users\ferna\.gradle\caches\transforms-3\baa6f3d96aae109b1ef2f6f948ff0270\transformed\jetified-gotrue-kt-debug\AndroidManifest.xml:14:13-16:52
+64                android:name="io.github.jan.supabase.gotrue.SupabaseInitializer"
+64-->[io.github.jan-tennert.supabase:gotrue-kt-android-debug:2.4.0] C:\Users\ferna\.gradle\caches\transforms-3\baa6f3d96aae109b1ef2f6f948ff0270\transformed\jetified-gotrue-kt-debug\AndroidManifest.xml:15:17-81
+65                android:value="androidx.startup" />
+65-->[io.github.jan-tennert.supabase:gotrue-kt-android-debug:2.4.0] C:\Users\ferna\.gradle\caches\transforms-3\baa6f3d96aae109b1ef2f6f948ff0270\transformed\jetified-gotrue-kt-debug\AndroidManifest.xml:16:17-49
+66            <meta-data
+66-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\ferna\.gradle\caches\transforms-3\92e26578e3f8d2cafca4afd9da1c1eff\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+67                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+67-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\ferna\.gradle\caches\transforms-3\92e26578e3f8d2cafca4afd9da1c1eff\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+68                android:value="androidx.startup" />
+68-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\ferna\.gradle\caches\transforms-3\92e26578e3f8d2cafca4afd9da1c1eff\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+69            <meta-data
+69-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+70                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+70-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+71                android:value="androidx.startup" />
+71-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+72            <meta-data
+72-->[com.russhwolf:multiplatform-settings-no-arg-android-debug:1.1.1] C:\Users\ferna\.gradle\caches\transforms-3\9620f6902651abfc642378ce8c98c66a\transformed\jetified-multiplatform-settings-no-arg-debug\AndroidManifest.xml:29:13-31:52
+73                android:name="com.russhwolf.settings.SettingsInitializer"
+73-->[com.russhwolf:multiplatform-settings-no-arg-android-debug:1.1.1] C:\Users\ferna\.gradle\caches\transforms-3\9620f6902651abfc642378ce8c98c66a\transformed\jetified-multiplatform-settings-no-arg-debug\AndroidManifest.xml:30:17-74
+74                android:value="androidx.startup" />
+74-->[com.russhwolf:multiplatform-settings-no-arg-android-debug:1.1.1] C:\Users\ferna\.gradle\caches\transforms-3\9620f6902651abfc642378ce8c98c66a\transformed\jetified-multiplatform-settings-no-arg-debug\AndroidManifest.xml:31:17-49
+75        </provider>
+76
+77        <uses-library
+77-->[androidx.window:window:1.0.0] C:\Users\ferna\.gradle\caches\transforms-3\b512bdef2a601e87e51859720a469ac1\transformed\jetified-window-1.0.0\AndroidManifest.xml:25:9-27:40
+78            android:name="androidx.window.extensions"
+78-->[androidx.window:window:1.0.0] C:\Users\ferna\.gradle\caches\transforms-3\b512bdef2a601e87e51859720a469ac1\transformed\jetified-window-1.0.0\AndroidManifest.xml:26:13-54
+79            android:required="false" />
+79-->[androidx.window:window:1.0.0] C:\Users\ferna\.gradle\caches\transforms-3\b512bdef2a601e87e51859720a469ac1\transformed\jetified-window-1.0.0\AndroidManifest.xml:27:13-37
+80        <uses-library
+80-->[androidx.window:window:1.0.0] C:\Users\ferna\.gradle\caches\transforms-3\b512bdef2a601e87e51859720a469ac1\transformed\jetified-window-1.0.0\AndroidManifest.xml:28:9-30:40
+81            android:name="androidx.window.sidecar"
+81-->[androidx.window:window:1.0.0] C:\Users\ferna\.gradle\caches\transforms-3\b512bdef2a601e87e51859720a469ac1\transformed\jetified-window-1.0.0\AndroidManifest.xml:29:13-51
+82            android:required="false" />
+82-->[androidx.window:window:1.0.0] C:\Users\ferna\.gradle\caches\transforms-3\b512bdef2a601e87e51859720a469ac1\transformed\jetified-window-1.0.0\AndroidManifest.xml:30:13-37
+83
+84        <service
+84-->[androidx.room:room-runtime:2.6.1] C:\Users\ferna\.gradle\caches\transforms-3\401272992825947870d4a45ad024cec9\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+85            android:name="androidx.room.MultiInstanceInvalidationService"
+85-->[androidx.room:room-runtime:2.6.1] C:\Users\ferna\.gradle\caches\transforms-3\401272992825947870d4a45ad024cec9\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+86            android:directBootAware="true"
+86-->[androidx.room:room-runtime:2.6.1] C:\Users\ferna\.gradle\caches\transforms-3\401272992825947870d4a45ad024cec9\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+87            android:exported="false" />
+87-->[androidx.room:room-runtime:2.6.1] C:\Users\ferna\.gradle\caches\transforms-3\401272992825947870d4a45ad024cec9\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+88
+89        <receiver
+89-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+90            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+91            android:directBootAware="false"
+91-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+92            android:enabled="true"
+92-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+93            android:exported="true"
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+94            android:permission="android.permission.DUMP" >
+94-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+95            <intent-filter>
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+96                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+97            </intent-filter>
+98            <intent-filter>
+98-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+99                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+100            </intent-filter>
+101            <intent-filter>
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+102                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+103            </intent-filter>
+104            <intent-filter>
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+105                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\ferna\.gradle\caches\transforms-3\696163374e8d5246250e99040442836a\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+106            </intent-filter>
+107        </receiver>
+108    </application>
+109
+110</manifest>

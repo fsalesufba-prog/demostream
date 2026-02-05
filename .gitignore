@@ -1,23 +1,5 @@
 # Android/Gradle
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
 
-# Module builds
-/mobile/build
-/tv/build
 
 # Kotlin
 *.class
@@ -37,12 +19,4 @@ local.properties
 *.iws
 *.ipr
 
-# Gradle
-.gradle/
-build/
 
-# Replit
-.cache/
-.config/
-.upm/
-.env
