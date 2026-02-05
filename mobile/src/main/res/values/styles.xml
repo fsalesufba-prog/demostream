@@ -1,0 +1,14 @@
+<resources>
+    <style name="ExoMediaButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="ExoMediaButton.PlayPause" parent="ExoMediaButton">
+    </style>
+
+    <style name="ExoMediaButton.Settings" parent="ExoMediaButton">
+    </style>
+
+    <style name="ExoMediaButton.Fullscreen" parent="ExoMediaButton">
+    </style>
+</resources>
