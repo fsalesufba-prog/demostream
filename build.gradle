@@ -33,7 +33,7 @@ plugins {
 allprojects {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
         kotlinOptions {
-            jvmTarget = "17"
+            jvmTarget = "19"
             freeCompilerArgs += [
                 "-Xjvm-default=all",
                 "-opt-in=kotlin.RequiresOptIn"
