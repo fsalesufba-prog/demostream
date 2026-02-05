@@ -3,7 +3,7 @@ package com.demo.streamflix.model.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.demo.streamflix.model.dao.CategoryDao
-import com.demo.streamflix.model.entity.CategoryEntity
+import com.demo.streamflix.data.local.entity.CategoryEntity
 
 @Database(
     entities = [CategoryEntity::class],

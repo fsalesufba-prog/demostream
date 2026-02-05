@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.demo.streamflix.R
 import com.demo.streamflix.databinding.ItemChannelBinding
-import com.demo.streamflix.model.entity.ChannelEntity
+import com.demo.streamflix.data.local.entity.ChannelEntity
 
 class ChannelAdapter(
     private val onItemClick: (ChannelEntity) -> Unit

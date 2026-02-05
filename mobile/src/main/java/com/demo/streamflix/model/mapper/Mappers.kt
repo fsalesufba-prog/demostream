@@ -2,8 +2,8 @@ package com.demo.streamflix.model.mapper
 
 import com.demo.streamflix.model.Category
 import com.demo.streamflix.model.Channel
-import com.demo.streamflix.model.entity.CategoryEntity
-import com.demo.streamflix.model.entity.ChannelEntity
+import com.demo.streamflix.data.local.entity.CategoryEntity
+import com.demo.streamflix.data.local.entity.ChannelEntity
 
 fun CategoryEntity.toCategory(): Category {
     return Category(

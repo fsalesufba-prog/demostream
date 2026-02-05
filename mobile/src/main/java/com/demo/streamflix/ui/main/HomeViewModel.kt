@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.demo.streamflix.data.repository.CategoryRepository
 import com.demo.streamflix.data.repository.ChannelRepository
-import com.demo.streamflix.model.entity.CategoryEntity
-import com.demo.streamflix.model.entity.ChannelEntity
+import com.demo.streamflix.data.local.entity.CategoryEntity
+import com.demo.streamflix.data.local.entity.ChannelEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

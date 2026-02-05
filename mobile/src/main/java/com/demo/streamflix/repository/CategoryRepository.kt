@@ -1,7 +1,7 @@
 package com.demo.streamflix.repository
 
 import com.demo.streamflix.model.dao.CategoryDao
-import com.demo.streamflix.model.entity.CategoryEntity
+import com.demo.streamflix.data.local.entity.CategoryEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

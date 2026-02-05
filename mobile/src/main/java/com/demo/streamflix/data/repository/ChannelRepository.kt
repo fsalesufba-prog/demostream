@@ -1,6 +1,6 @@
 package com.demo.streamflix.data.repository
 
-import com.demo.streamflix.model.entity.ChannelEntity
+import com.demo.streamflix.data.local.entity.ChannelEntity
 import io.github.jan_tennert.supabase.SupabaseClient
 import io.github.jan_tennert.supabase.postgrest.from
 import io.github.jan_tennert.supabase.postgrest.query.Columns

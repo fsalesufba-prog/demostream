@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.demo.streamflix.R
 import com.demo.streamflix.databinding.ItemCategoryBinding
-import com.demo.streamflix.model.entity.CategoryEntity
+import com.demo.streamflix.data.local.entity.CategoryEntity
 
 class CategoryAdapter(
     private val onItemClick: (CategoryEntity) -> Unit

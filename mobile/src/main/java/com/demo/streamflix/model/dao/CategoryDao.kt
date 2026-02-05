@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.demo.streamflix.model.entity.CategoryEntity
+import com.demo.streamflix.data.local.entity.CategoryEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
