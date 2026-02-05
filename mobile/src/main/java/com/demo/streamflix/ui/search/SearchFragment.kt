@@ -14,8 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.streamflix.NavGraphDirections
 import com.demo.streamflix.R
 import com.demo.streamflix.databinding.FragmentSearchBinding
-import com.demo.streamflix.ui.adapters.ChannelAdapter
-import com.demo.streamflix.util.Extensions.hideKeyboard
+import com.demo.streamflix.ui.adapters.SearchAdapter
+import com.demo.streamflix.extensions.hideKeyboard
+import com.demo.streamflix.model.mapper.toChannel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -28,7 +29,7 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: SearchViewModel by viewModels()
 
-    private lateinit var channelAdapter: ChannelAdapter
+    private lateinit var searchAdapter: SearchAdapter
     private var searchJob: Job? = null
 
     override fun onCreateView(
@@ -53,19 +54,19 @@ class SearchFragment : Fragment() {
         }
 
         // Setup search adapter
-        channelAdapter = ChannelAdapter { channel ->
-            navigateToChannelDetail(channel)
+        searchAdapter = SearchAdapter { channel ->
+            navigateToChannelDetail(channel.toChannel())
         }
         binding.rvSearchResults.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = channelAdapter
+            adapter = searchAdapter
         }
 
         // Setup search functionality
         binding.etSearch.apply {
             setOnEditorActionListener { _, _, _ ->
                 performSearch()
-                hideKeyboard()
+                binding.root.hideKeyboard()
                 true
             }
 
@@ -92,13 +93,13 @@ class SearchFragment : Fragment() {
     private fun performSearch() {
         val query = binding.etSearch.text.toString().trim()
         if (query.isNotEmpty()) {
-            hideKeyboard()
+            binding.root.hideKeyboard()
             viewModel.searchChannels(query)
         }
     }
 
     private fun clearSearchResults() {
-        channelAdapter.submitList(emptyList())
+        searchAdapter.submitList(emptyList())
         binding.tvNoResults.visibility = View.VISIBLE
         binding.rvSearchResults.visibility = View.GONE
     }
@@ -107,7 +108,7 @@ class SearchFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.searchResults.collect { channels ->
                 if (channels.isNotEmpty()) {
-                    channelAdapter.submitList(channels)
+                    searchAdapter.submitList(channels)
                     binding.tvNoResults.visibility = View.GONE
                     binding.rvSearchResults.visibility = View.VISIBLE
                 } else {
@@ -116,7 +117,7 @@ class SearchFragment : Fragment() {
                     } else {
                         binding.tvNoResults.visibility = View.GONE
                     }
-                    channelAdapter.submitList(emptyList())
+                    searchAdapter.submitList(emptyList())
                 }
             }
         }
@@ -136,8 +137,8 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun navigateToChannelDetail(channel: com.demo.streamflix.data.model.Channel) {
-        val action = NavGraphDirections.actionGlobalChannelDetailFragment(channel)
+    private fun navigateToChannelDetail(channel: com.demo.streamflix.model.Channel) {
+        val action = SearchFragmentDirections.actionSearchFragmentToPlayerFragment(channel)
         findNavController().navigate(action)
     }
 

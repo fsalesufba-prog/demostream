@@ -1,41 +1,47 @@
 package com.demo.streamflix.ui.player
 
 import android.content.Context
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.trackselection.TrackSelector
-import com.google.android.exoplayer2.util.MimeTypes
+import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
+import androidx.media3.common.Player
+import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.hls.HlsMediaSource
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ExoPlayerManager @Inject constructor() {
+class ExoPlayerManager @Inject constructor(
+    private val context: Context
+) {
 
-    fun createPlayer(context: Context): ExoPlayer {
-        val trackSelector = DefaultTrackSelector(context).apply {
-            setParameters(
-                buildUponParameters()
-                    .setMaxVideoSizeSd()
-                    .setPreferredAudioLanguage("es")
-                    .setSelectUndeterminedTextLanguage(true)
-            )
-        }
+    private var exoPlayer: ExoPlayer? = null
 
-        return ExoPlayer.Builder(context)
-            .setTrackSelector(trackSelector)
-            .setHandleAudioBecomingNoisy(true)
-            .setWakeMode(C.WAKE_MODE_NETWORK)
+    fun createPlayer(): ExoPlayer {
+        releasePlayer()
+
+        exoPlayer = ExoPlayer.Builder(context)
             .build()
-            .apply {
-                // Configurações do player
-                repeatMode = Player.REPEAT_MODE_OFF
-                playWhenReady = true
-                setHandleAudioBecomingNoisy(true)
-            }
+
+        return exoPlayer!!
     }
 
-    fun releasePlayer(player: ExoPlayer?) {
-        player?.release()
+    fun play(url: String) {
+        exoPlayer?.let { player ->
+            val dataSourceFactory = DefaultHttpDataSource.Factory()
+            val mediaSource = HlsMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(MediaItem.fromUri(url))
+
+            player.setMediaSource(mediaSource)
+            player.prepare()
+            player.play()
+        }
     }
+
+    fun releasePlayer() {
+        exoPlayer?.release()
+        exoPlayer = null
+    }
+
+    fun getPlayer(): ExoPlayer? = exoPlayer
 }

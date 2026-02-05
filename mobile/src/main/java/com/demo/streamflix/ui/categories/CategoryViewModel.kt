@@ -2,8 +2,8 @@ package com.demo.streamflix.ui.categories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.demo.streamflix.data.repository.ChannelRepository
 import com.demo.streamflix.data.local.entity.ChannelEntity
+import com.demo.streamflix.data.repository.ChannelRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,10 +29,13 @@ class CategoryViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoading.value = true
             _error.value = null
+
             try {
-                _channels.value = channelRepository.getChannelsForCategory(categoryId)
+                val result = channelRepository.getChannelsForCategory(categoryId)
+                val activeChannels = result.filter { it.isActive }
+                _channels.value = activeChannels
             } catch (e: Exception) {
-                _error.value = e.message ?: "Failed to load channels"
+                _error.value = "Error: ${e.message}"
             } finally {
                 _isLoading.value = false
             }

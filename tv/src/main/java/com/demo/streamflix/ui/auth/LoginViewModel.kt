@@ -32,13 +32,10 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             _loginState.value = LoginState.Loading
             try {
-                val response = authRepository.login(loginRequest)
+                val result = authRepository.login(loginRequest)
                 
-                if (response.isSuccessful && response.body() != null) {
-                    val authResponse = response.body()!!
-                    
-                    // Save token and user data
-                    sharedPrefs.putString("auth_token", authResponse.token)
+                if (result.isSuccess) {
+                    // Login successful
                     sharedPrefs.putBoolean("is_logged_in", true)
                     sharedPrefs.putString("user_email", loginRequest.email)
                     
@@ -47,10 +44,16 @@ class LoginViewModel @Inject constructor(
                         sharedPrefs.putBoolean("remember_me", true)
                     }
                     
+                    // Get and save user token if available
+                    val currentUser = authRepository.getCurrentUser()
+                    currentUser?.accessToken?.let { token ->
+                        sharedPrefs.putString("auth_token", token)
+                    }
+                    
                     _loginState.value = LoginState.Success("Login successful")
                 } else {
                     _loginState.value = LoginState.Error(
-                        response.errorBody()?.string() ?: "Login failed"
+                        result.exceptionOrNull()?.message ?: "Login failed"
                     )
                 }
             } catch (e: Exception) {

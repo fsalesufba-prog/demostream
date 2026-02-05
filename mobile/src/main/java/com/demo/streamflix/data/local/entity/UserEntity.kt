@@ -1,27 +1,29 @@
 package com.demo.streamflix.data.local.entity
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Serializable
+@Entity(tableName = "users")
 data class UserEntity(
+    @PrimaryKey
     val id: String,
     val email: String,
     val name: String,
     val password: String,
     val phone: String? = null,
-    @SerialName("avatar_url")
+    @ColumnInfo("avatar_url")
     val avatarUrl: String? = null,
-    @SerialName("membership_expiry")
+    @ColumnInfo("membership_expiry")
     val membershipExpiry: String? = null,
-    @SerialName("is_active")
+    @ColumnInfo("is_active")
     val isActive: Boolean = true,
-    @SerialName("is_admin")
+    @ColumnInfo("is_admin")
     val isAdmin: Boolean = false,
-    @SerialName("created_at")
+    @ColumnInfo("created_at")
     val createdAt: String,
-    @SerialName("updated_at")
+    @ColumnInfo("updated_at")
     val updatedAt: String,
-    @SerialName("last_login")
+    @ColumnInfo("last_login")
     val lastLogin: String? = null
 )

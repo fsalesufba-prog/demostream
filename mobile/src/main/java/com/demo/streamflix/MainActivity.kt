@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.demo.streamflix.databinding.ActivityMainBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,12 +17,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupNavigation()
         setupBottomNavigation()
+
+        val destination = intent.getIntExtra("destination", -1)
+        if (destination != -1) {
+            navController.navigate(destination)
+        }
     }
 
     private fun setupNavigation() {
@@ -32,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
         binding.bottomNavigation.setupWithNavController(navController)
-        
+
         // Hide bottom navigation on certain destinations
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -49,19 +55,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        when (navController.currentDestination?.id) {
-            R.id.homeFragment -> {
-                // If on home, ask if user wants to exit
-                showExitConfirmation()
-            }
-            else -> {
-                super.onBackPressed()
-            }
+        if (navController.currentDestination?.id == R.id.homeFragment) {
+            showExitConfirmation()
+        } else {
+            super.onBackPressed()
         }
     }
 
     private fun showExitConfirmation() {
-        android.app.AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this)
             .setTitle(getString(R.string.exit_app))
             .setMessage(getString(R.string.exit_confirmation_message))
             .setPositiveButton(getString(R.string.yes)) { _, _ ->

@@ -36,8 +36,8 @@ class CategoryAdapter(
             with(binding) {
                 tvCategoryName.text = category.name
 
-                // Load icon using Glide
-                if (category.iconUrl.isNotEmpty()) {
+                // CORREÇÃO: Usar iconUrl em vez de logoUrl
+                if (!category.iconUrl.isNullOrEmpty()) {
                     Glide.with(itemView.context)
                         .load(category.iconUrl)
                         .placeholder(R.drawable.ic_category_placeholder)

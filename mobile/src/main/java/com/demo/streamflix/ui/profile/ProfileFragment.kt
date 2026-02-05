@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.demo.streamflix.R
 import com.demo.streamflix.databinding.FragmentProfileBinding
-import com.demo.streamflix.util.Extensions.showToast
+import com.demo.streamflix.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -63,7 +63,7 @@ class ProfileFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.userProfile.collect { user ->
                 user?.let {
-                    binding.tvName.text = it.fullName
+                    binding.tvName.text = it.name
 
                     binding.itemEmail.ivIcon.setImageResource(R.drawable.ic_email)
                     binding.itemEmail.tvInfo.text = it.email
@@ -96,7 +96,7 @@ class ProfileFragment : Fragment() {
     private fun logout() {
         viewModel.logout()
         // Navigate to the login screen by restarting the navigation graph
-        findNavController().navigate(R.id.splashFragment)
+        findNavController().navigate(R.id.action_global_splashFragment)
     }
 
     override fun onDestroyView() {

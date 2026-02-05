@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.demo.streamflix.R
 import com.demo.streamflix.databinding.FragmentCategoryBinding
 import com.demo.streamflix.ui.adapters.ChannelAdapter
+import com.demo.streamflix.ui.categories.CategoryBaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

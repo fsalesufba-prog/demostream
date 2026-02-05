@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.demo.streamflix.R
+import com.demo.streamflix.ui.categories.CategoryBaseFragment
 
 class ActualidadFragment : CategoryBaseFragment() {
 

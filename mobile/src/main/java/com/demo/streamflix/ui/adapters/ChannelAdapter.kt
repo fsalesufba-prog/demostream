@@ -37,8 +37,13 @@ class ChannelAdapter(
             with(binding) {
                 tvChannelName.text = channel.name
 
-                // Format channel number with leading zeros
-                tvChannelNumber.text = String.format("%03d", channel.number)
+                // Mostrar número do canal se disponível
+                if (channel.number > 0) {
+                    tvChannelNumber.text = channel.number.toString()
+                    tvChannelNumber.visibility = View.VISIBLE
+                } else {
+                    tvChannelNumber.visibility = View.GONE
+                }
 
                 // Load logo using Glide
                 if (channel.logoUrl.isNotEmpty()) {
@@ -48,18 +53,12 @@ class ChannelAdapter(
                         .error(R.drawable.channel_placeholder)
                         .into(ivChannelLogo)
                 } else {
-                    // Use placeholder if no logo
                     ivChannelLogo.setImageResource(R.drawable.channel_placeholder)
                 }
 
                 // Show HD badge if channel is HD
-                if (channel.isHd) {
-                    tvHdBadge.visibility = View.VISIBLE
-                } else {
-                    tvHdBadge.visibility = View.GONE
-                }
+                tvHdBadge.visibility = if (channel.isHd) View.VISIBLE else View.GONE
 
-                // Set click listener
                 root.setOnClickListener {
                     onItemClick(channel)
                 }
@@ -69,17 +68,11 @@ class ChannelAdapter(
 }
 
 class ChannelDiffCallback : DiffUtil.ItemCallback<ChannelEntity>() {
-    override fun areItemsTheSame(
-        oldItem: ChannelEntity,
-        newItem: ChannelEntity
-    ): Boolean {
+    override fun areItemsTheSame(oldItem: ChannelEntity, newItem: ChannelEntity): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(
-        oldItem: ChannelEntity,
-        newItem: ChannelEntity
-    ): Boolean {
+    override fun areContentsTheSame(oldItem: ChannelEntity, newItem: ChannelEntity): Boolean {
         return oldItem == newItem
     }
 }

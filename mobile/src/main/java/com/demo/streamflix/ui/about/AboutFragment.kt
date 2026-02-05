@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.demo.streamflix.R
 import com.demo.streamflix.databinding.FragmentAboutBinding
-import com.demo.streamflix.util.Extensions.showToast
+import com.demo.streamflix.extensions.showToast
 
 class AboutFragment : Fragment() {
 

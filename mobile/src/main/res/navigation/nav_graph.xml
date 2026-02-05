@@ -53,7 +53,18 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <!-- ADICIONE ESTA AÇÃO -->
+        <action
+            android:id="@+id/action_homeFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
     </fragment>
+
+    <!-- Category Fragment (NOVO) -->
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.demo.streamflix.ui.categories.CategoryFragment"
+        android:label="Categoría"
+        tools:layout="@layout/fragment_category" />
 
     <!-- Channel Detail -->
     <fragment

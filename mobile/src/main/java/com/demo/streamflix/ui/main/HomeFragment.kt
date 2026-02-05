@@ -10,12 +10,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager
-import com.demo.streamflix.NavGraphDirections
 import com.demo.streamflix.R
 import com.demo.streamflix.databinding.FragmentHomeBinding
 import com.demo.streamflix.ui.adapters.CategoryAdapter
 import com.demo.streamflix.ui.adapters.ChannelAdapter
-import com.demo.streamflix.util.Extensions.showSnackbar
+import com.demo.streamflix.extensions.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -48,69 +47,82 @@ class HomeFragment : Fragment() {
 
     private fun setupUI() {
         // Category RecyclerView
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvCategories.layoutManager = layoutManager
+
         categoryAdapter = CategoryAdapter { category ->
-            // TODO: Implement category click navigation if needed
+            val bundle = Bundle().apply {
+                putLong("categoryId", category.id)
+                putString("categoryName", category.name)
+            }
+            try {
+                findNavController().navigate(R.id.action_homeFragment_to_categoryFragment, bundle)
+            } catch (e: Exception) {
+                showSnackbar(binding.root, "Categoría no disponible temporalmente")
+            }
         }
-        binding.rvCategories.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = categoryAdapter
-        }
+        binding.rvCategories.adapter = categoryAdapter
 
         // Channel RecyclerViews
-        nacionalAdapter = ChannelAdapter { channel -> navigateToChannelDetail(channel) }
+        nacionalAdapter = ChannelAdapter { channel ->
+            navigateToChannelDetail(channel)
+        }
         binding.rvNacional.apply {
-            layoutManager = GridLayoutManager(requireContext(), 3)
+            // Remove o layoutManager do XML e configura no código
+            this.layoutManager = GridLayoutManager(requireContext(), 3)
             adapter = nacionalAdapter
         }
 
-        actualidadAdapter = ChannelAdapter { channel -> navigateToChannelDetail(channel) }
-        binding.rvActualidad.apply {
-            layoutManager = GridLayoutManager(requireContext(), 3)
-            adapter = actualidadAdapter
+        actualidadAdapter = ChannelAdapter { channel ->
+            navigateToChannelDetail(channel)
         }
-
-        // Bottom Navigation
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_tv -> true // Already on this screen
-                R.id.navigation_cast -> {
-                    // TODO: Implement cast functionality
-                    true
-                }
-                R.id.navigation_profile -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
-                    true
-                }
-                R.id.navigation_about -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_aboutFragment)
-                    true
-                }
-                else -> false
-            }
+        binding.rvActualidad.apply {
+            this.layoutManager = GridLayoutManager(requireContext(), 3)
+            adapter = actualidadAdapter
         }
     }
 
     private fun setupObservers() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.categories.collect { categories ->
-                categoryAdapter.submitList(categories)
+                // Filtrar apenas categorias ativas
+                val activeCategories = categories.filter { it.isActive }
+                categoryAdapter.submitList(activeCategories)
             }
         }
 
-        lifecycleScope.launch {
-            viewModel.channels.collect { channels ->
-                nacionalAdapter.submitList(channels.filter { it.categoryId == 1 })
-                actualidadAdapter.submitList(channels.filter { it.categoryId == 2 })
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.nacionalChannels.collect { channels ->
+                nacionalAdapter.submitList(channels)
             }
         }
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.actualidadChannels.collect { channels ->
+                actualidadAdapter.submitList(channels)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.isLoading.collect { isLoading ->
-                // TODO: Show a loading indicator
+                // Controle de visibilidade durante carregamento
+                if (isLoading) {
+                    binding.rvCategories.visibility = View.INVISIBLE
+                    binding.tvNacional.visibility = View.INVISIBLE
+                    binding.rvNacional.visibility = View.INVISIBLE
+                    binding.tvActualidad.visibility = View.INVISIBLE
+                    binding.rvActualidad.visibility = View.INVISIBLE
+                } else {
+                    binding.rvCategories.visibility = View.VISIBLE
+                    binding.tvNacional.visibility = View.VISIBLE
+                    binding.rvNacional.visibility = View.VISIBLE
+                    binding.tvActualidad.visibility = View.VISIBLE
+                    binding.rvActualidad.visibility = View.VISIBLE
+                }
             }
         }
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.error.collect { error ->
                 error?.let { showSnackbar(binding.root, it) }
             }
@@ -119,12 +131,22 @@ class HomeFragment : Fragment() {
 
     private fun loadData() {
         viewModel.loadCategories()
-        viewModel.loadChannels()
+        viewModel.loadNacionalChannels()
+        viewModel.loadActualidadChannels()
     }
 
-    private fun navigateToChannelDetail(channel: com.demo.streamflix.data.model.Channel) {
-        val action = NavGraphDirections.actionGlobalChannelDetailFragment(channel)
-        findNavController().navigate(action)
+    private fun navigateToChannelDetail(channel: com.demo.streamflix.data.local.entity.ChannelEntity) {
+        val bundle = Bundle().apply {
+            putLong("channelId", channel.id)
+            putString("channelName", channel.name)
+            putString("channelLogo", channel.logoUrl)
+            putString("channelStreamUrl", channel.streamUrl)
+            putString("channelDescription", channel.description)
+            putBoolean("channelIsHd", channel.isHd)
+            putInt("channelNumber", channel.number)
+        }
+
+        findNavController().navigate(R.id.action_global_channelDetailFragment, bundle)
     }
 
     override fun onDestroyView() {

@@ -2,7 +2,7 @@ package com.demo.streamflix.di
 
 import android.content.Context
 import androidx.room.Room
-import com.demo.streamflix.model.db.AppDatabase
+import com.demo.streamflix.data.local.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,4 +27,10 @@ object DatabaseModule {
 
     @Provides
     fun provideCategoryDao(db: AppDatabase) = db.categoryDao()
+
+    @Provides
+    fun provideChannelDao(db: AppDatabase) = db.channelDao()
+
+    @Provides
+    fun provideUserDao(db: AppDatabase) = db.userDao()
 }

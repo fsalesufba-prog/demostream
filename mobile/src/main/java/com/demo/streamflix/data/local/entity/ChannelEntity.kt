@@ -1,26 +1,28 @@
 package com.demo.streamflix.data.local.entity
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Serializable
+@Entity(tableName = "channels")
 data class ChannelEntity(
+    @PrimaryKey
     val id: Long,
     val number: Int,
     val name: String,
     val description: String,
-    @SerialName("logo_url")
+    @ColumnInfo("logo_url")
     val logoUrl: String,
-    @SerialName("stream_url")
+    @ColumnInfo("stream_url")
     val streamUrl: String,
-    @SerialName("category_id")
+    @ColumnInfo("category_id")
     val categoryId: Long,
-    @SerialName("is_hd")
+    @ColumnInfo("is_hd")
     val isHd: Boolean = false,
-    @SerialName("is_active")
+    @ColumnInfo("is_active")
     val isActive: Boolean = true,
-    @SerialName("created_at")
+    @ColumnInfo("created_at")
     val createdAt: String,
-    @SerialName("updated_at")
+    @ColumnInfo("updated_at")
     val updatedAt: String
 )

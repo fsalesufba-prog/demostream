@@ -2,10 +2,10 @@ package com.demo.streamflix.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.demo.streamflix.data.repository.CategoryRepository
-import com.demo.streamflix.data.repository.ChannelRepository
 import com.demo.streamflix.data.local.entity.CategoryEntity
 import com.demo.streamflix.data.local.entity.ChannelEntity
+import com.demo.streamflix.data.repository.CategoryRepository
+import com.demo.streamflix.data.repository.ChannelRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,8 +22,11 @@ class HomeViewModel @Inject constructor(
     private val _categories = MutableStateFlow<List<CategoryEntity>>(emptyList())
     val categories: StateFlow<List<CategoryEntity>> = _categories.asStateFlow()
 
-    private val _featuredChannels = MutableStateFlow<List<ChannelEntity>>(emptyList())
-    val featuredChannels: StateFlow<List<ChannelEntity>> = _featuredChannels.asStateFlow()
+    private val _nacionalChannels = MutableStateFlow<List<ChannelEntity>>(emptyList())
+    val nacionalChannels: StateFlow<List<ChannelEntity>> = _nacionalChannels.asStateFlow()
+
+    private val _actualidadChannels = MutableStateFlow<List<ChannelEntity>>(emptyList())
+    val actualidadChannels: StateFlow<List<ChannelEntity>> = _actualidadChannels.asStateFlow()
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
@@ -31,36 +34,61 @@ class HomeViewModel @Inject constructor(
     private val _error = MutableStateFlow<String?>(null)
     val error: StateFlow<String?> = _error.asStateFlow()
 
+    init {
+        loadAllData()
+    }
+
+    private fun loadAllData() {
+        loadCategories()
+        loadNacionalChannels()
+        loadActualidadChannels()
+    }
+
     fun loadCategories() {
         viewModelScope.launch {
             _isLoading.value = true
             _error.value = null
+
             try {
-                val categories = categoryRepository.getAllCategories()
-                _categories.value = categories
+                val result = categoryRepository.getAllCategories()
+                _categories.value = result
             } catch (e: Exception) {
-                _error.value = e.message ?: "Failed to load categories"
+                _error.value = "Error al cargar categorías: ${e.message}"
             } finally {
                 _isLoading.value = false
             }
         }
     }
 
-    /*
-    fun loadFeaturedChannels(refresh: Boolean = false) {
+    fun loadNacionalChannels() {
         viewModelScope.launch {
             _isLoading.value = true
-            _error.value = null
             try {
-                // TODO: Implement logic to get featured channels from Supabase
-                // val channels = channelRepository.getFeaturedChannels(refresh)
-                // _featuredChannels.value = channels
+                val channels = channelRepository.getChannelsForCategory(1L) // ID para Nacional
+                _nacionalChannels.value = channels.filter { it.isActive }
             } catch (e: Exception) {
-                _error.value = e.message ?: "Failed to load channels"
+                _error.value = "Error al cargar canales nacionales: ${e.message}"
             } finally {
                 _isLoading.value = false
             }
         }
     }
-    */
+
+    fun loadActualidadChannels() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                val channels = channelRepository.getChannelsForCategory(2L) // ID para Actualidad
+                _actualidadChannels.value = channels.filter { it.isActive }
+            } catch (e: Exception) {
+                _error.value = "Error al cargar canales de actualidad: ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun refreshAll() {
+        loadAllData()
+    }
 }

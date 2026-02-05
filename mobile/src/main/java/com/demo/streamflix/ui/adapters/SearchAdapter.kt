@@ -35,24 +35,17 @@ class SearchAdapter(
 
         fun bind(channel: ChannelEntity) {
             with(binding) {
-                tvChannelNumber.text = String.format("%03d", channel.number)
                 tvChannelName.text = channel.name
-                tvChannelDescription.text = channel.description
 
                 // Load logo
-                if (channel.logoUrl.isNotEmpty()) {
+                if (!channel.logoUrl.isNullOrEmpty()) {
                     Glide.with(itemView.context)
                         .load(channel.logoUrl)
                         .placeholder(R.drawable.channel_placeholder)
                         .error(R.drawable.channel_placeholder)
                         .into(ivChannelLogo)
-                }
-
-                // Show HD badge
-                if (channel.isHd) {
-                    tvHdBadge.visibility = View.VISIBLE
                 } else {
-                    tvHdBadge.visibility = View.GONE
+                    ivChannelLogo.setImageResource(R.drawable.channel_placeholder)
                 }
 
                 // Set click listener

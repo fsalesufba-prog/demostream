@@ -11,21 +11,20 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.demo.streamflix.databinding.FragmentCategoryBinding
 import com.demo.streamflix.ui.adapters.ChannelAdapter
-import com.demo.streamflix.util.Extensions.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 abstract class CategoryBaseFragment : Fragment() {
 
-    protected abstract fun getCategoryId(): Int
-    protected abstract fun getCategoryName(): String
-    
     private var _binding: FragmentCategoryBinding? = null
-    protected val binding get() = _binding!!
-    
+    private val binding get() = _binding!!
+
     private val viewModel: CategoryViewModel by viewModels()
     private lateinit var channelAdapter: ChannelAdapter
+
+    abstract fun getCategoryId(): Int
+    abstract fun getCategoryName(): String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,18 +37,18 @@ abstract class CategoryBaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupUI()
-        setupObservers()
+        observeViewModel()
+        loadChannels()
     }
 
-    protected fun setupUI() {
-        // Configurar toolbar
+    private fun setupUI() {
         binding.toolbar.title = getCategoryName()
         binding.toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
-        // Configurar adapter de canais
         channelAdapter = ChannelAdapter { channel ->
             navigateToChannelDetail(channel)
         }
@@ -58,54 +57,57 @@ abstract class CategoryBaseFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 3)
             adapter = channelAdapter
         }
-
-        // Configurar refresh layout
-        binding.swipeRefresh.setOnRefreshListener {
-            loadChannels(refresh = true)
-        }
     }
 
-    protected fun setupObservers() {
-        lifecycleScope.launch {
+    private fun navigateToChannelDetail(channel: com.demo.streamflix.data.local.entity.ChannelEntity) {
+        val bundle = Bundle().apply {
+            putLong("channelId", channel.id)
+            putString("channelName", channel.name)
+            putString("channelLogo", channel.logoUrl)
+            putString("channelStreamUrl", channel.streamUrl)
+            putString("channelDescription", channel.description)
+            putBoolean("channelIsHd", channel.isHd)
+            putInt("channelNumber", channel.number)
+        }
+        
+        findNavController().navigate(
+            com.demo.streamflix.R.id.action_global_channelDetailFragment,
+            bundle
+        )
+    }
+
+    private fun observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.channels.collect { channels ->
                 channelAdapter.submitList(channels)
-            }
-        }
-
-        lifecycleScope.launch {
-            viewModel.isLoading.collect { isLoading ->
-                binding.swipeRefresh.isRefreshing = isLoading
-                if (isLoading) {
-                    binding.progressBar.visibility = View.VISIBLE
+                
+                if (channels.isEmpty()) {
+                    binding.tvNoChannels.visibility = View.VISIBLE
+                    binding.rvChannels.visibility = View.GONE
                 } else {
-                    binding.progressBar.visibility = View.GONE
+                    binding.tvNoChannels.visibility = View.GONE
+                    binding.rvChannels.visibility = View.VISIBLE
                 }
             }
         }
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.isLoading.collect { isLoading ->
+                binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.error.collect { error ->
                 error?.let {
-                    showSnackbar(binding.root, it)
+                    // Mostrar erro se necessário
                 }
             }
         }
     }
 
-    protected fun loadChannels(refresh: Boolean = false) {
-        viewModel.loadChannelsByCategory(getCategoryId(), refresh)
-    }
-
-    protected fun navigateToChannelDetail(channel: com.demo.streamflix.data.model.Channel) {
-        // Usar safe args para passar o channel
-        val action = when (getCategoryId()) {
-            1 -> NacionalFragmentDirections.actionNacionalFragmentToChannelDetailFragment(channel)
-            2 -> ActualidadFragmentDirections.actionActualidadFragmentToChannelDetailFragment(channel)
-            3 -> InfantilFragmentDirections.actionInfantilFragmentToChannelDetailFragment(channel)
-            4 -> RegionalFragmentDirections.actionRegionalFragmentToChannelDetailFragment(channel)
-            else -> return
-        }
-        findNavController().navigate(action)
+    protected fun loadChannels() {
+        viewModel.loadChannelsByCategory(getCategoryId().toLong())
     }
 
     override fun onDestroyView() {

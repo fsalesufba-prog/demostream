@@ -18,32 +18,35 @@ class PlayerViewModel @Inject constructor(
     private val _isFavorite = MutableStateFlow(false)
     val isFavorite: StateFlow<Boolean> = _isFavorite.asStateFlow()
 
-    private val _error = MutableStateFlow<String?>(null)
-    val error: StateFlow<String?> = _error.asStateFlow()
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
-    fun checkIfFavorite(channelId: Int) {
+    fun setLoading(loading: Boolean) {
+        _isLoading.value = loading
+    }
+
+    // CORRIGIDO: Aceita Long
+    fun checkIfFavorite(channelId: Long) {
         viewModelScope.launch {
             try {
-                val isFav = channelRepository.isChannelFavorite(channelId)
-                _isFavorite.value = isFav
+                _isFavorite.value = channelRepository.isChannelFavorite(channelId)
             } catch (e: Exception) {
-                _error.value = e.message ?: "Failed to check favorite status"
+                _isFavorite.value = false
             }
         }
     }
 
-    fun toggleFavorite(channel: com.demo.streamflix.data.model.Channel) {
+    // CORRIGIDO: Aceita Long
+    fun toggleFavorite(channelId: Long) {
         viewModelScope.launch {
             try {
-                val currentStatus = _isFavorite.value
-                if (currentStatus) {
-                    channelRepository.removeFromFavorites(channel.id)
-                } else {
-                    channelRepository.addToFavorites(channel)
-                }
-                _isFavorite.value = !currentStatus
+                val current = _isFavorite.value
+                val newValue = !current
+
+                channelRepository.toggleFavorite(channelId)
+                _isFavorite.value = newValue
             } catch (e: Exception) {
-                _error.value = e.message ?: "Failed to toggle favorite"
+                // Tratar erro
             }
         }
     }

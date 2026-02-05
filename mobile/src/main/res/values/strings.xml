@@ -72,4 +72,14 @@
     <string name="error">Error</string>
     <string name="retry">Reintentar</string>
     <string name="no_internet">Sin conexión a internet</string>
+
+    <!-- Exit -->
+    <string name="exit_app">Exit App</string>
+    <string name="exit_confirmation_message">Are you sure you want to exit?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <!-- Player -->
+    <string name="stream_error">Erro ao carregar stream</string>
+
 </resources>

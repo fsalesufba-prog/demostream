@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.demo.streamflix.R
 import com.demo.streamflix.databinding.FragmentLoginBinding
 import com.demo.streamflix.data.model.request.LoginRequest
-import com.demo.streamflix.util.Extensions.hideKeyboard
+import com.demo.streamflix.extensions.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -59,7 +59,6 @@ class LoginFragment : Fragment() {
     private fun attemptLogin() {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
-        val rememberMe = binding.cbRememberMe.isChecked
 
         // Basic validation
         if (email.isEmpty()) {
@@ -78,14 +77,14 @@ class LoginFragment : Fragment() {
         }
 
         // Hide keyboard
-        hideKeyboard()
+        binding.root.hideKeyboard()
 
         // Show loading
         binding.btnLogin.isEnabled = false
         binding.progressBar.visibility = View.VISIBLE
 
         // Call viewModel
-        viewModel.login(LoginRequest(email, password, rememberMe))
+        viewModel.login(LoginRequest(email, password))
     }
 
     private fun setupObservers() {

@@ -7,14 +7,13 @@
     android:background="@color/black"
     android:keepScreenOn="true">
 
-    <!-- Player View -->
+    <!-- Player View do Media3/ExoPlayer -->
     <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/playerView"
+        android:id="@+id/playerView_live"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         app:controller_layout_id="@layout/exo_player_controls"
-        app:hide_during_ads="true"
         app:hide_on_touch="true"
         app:player_layout_id="@layout/exo_simple_player_view"
         app:resize_mode="fit"
@@ -28,7 +27,7 @@
 
     <!-- Overlay Controls -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/controlsOverlay"
+        android:id="@+id/controlsOverlay_live"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/bg_player_overlay"
@@ -39,7 +38,7 @@
 
         <!-- Back Button -->
         <ImageView
-            android:id="@+id/ivBack"
+            android:id="@+id/ivBack_live"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
@@ -53,7 +52,7 @@
 
         <!-- Channel Info -->
         <LinearLayout
-            android:id="@+id/llChannelInfo"
+            android:id="@+id/llChannelInfo_live"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -63,7 +62,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/tvChannelNumber"
+                android:id="@+id/tvChannelNumber_live"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="001"
@@ -72,7 +71,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvChannelName"
+                android:id="@+id/tvChannelName_live"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Willax HD"
@@ -83,7 +82,7 @@
 
         <!-- Right Controls -->
         <LinearLayout
-            android:id="@+id/llRightControls"
+            android:id="@+id/llRightControls_live"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -92,16 +91,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- Cast Button (SEM mediaRouteButtonTint) -->
-            <androidx.mediarouter.app.MediaRouteButton
-                android:id="@+id/media_route_button"
+            <!-- Cast Button (opcional) -->
+            <ImageView
+                android:id="@+id/btnCast_live"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="?attr/selectableItemBackground" />
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_cast"
+                android:contentDescription="@string/cast"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dp"
+                android:visibility="gone" />
 
             <!-- Favorite Button -->
             <ImageView
-                android:id="@+id/btnFavorite"
+                android:id="@+id/btnFavorite_live"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="8dp"
@@ -112,7 +116,7 @@
 
             <!-- Fullscreen Button -->
             <ImageView
-                android:id="@+id/btnFullscreen"
+                android:id="@+id/btnFullscreen_live"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/ic_fullscreen"
@@ -124,7 +128,7 @@
 
         <!-- Loading Message -->
         <TextView
-            android:id="@+id/tvLoading"
+            android:id="@+id/tvLoading_live"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/loading_stream"
@@ -138,7 +142,7 @@
 
         <!-- Loading Progress -->
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBar_live"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"

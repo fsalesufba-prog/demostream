@@ -32,26 +32,31 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             _loginState.value = LoginState.Loading
             try {
-                val response = authRepository.login(loginRequest)
-                
-                if (response.isSuccessful && response.body() != null) {
-                    val authResponse = response.body()!!
-                    
-                    // Save token and user data
-                    sharedPrefs.putString("auth_token", authResponse.token)
+                // Login deve retornar Unit ou Session, não Result<Unit>
+                authRepository.login(loginRequest)
+
+                // Login successful - verificar se usuário está autenticado
+                if (authRepository.isLoggedIn()) {
                     sharedPrefs.putBoolean("is_logged_in", true)
                     sharedPrefs.putString("user_email", loginRequest.email)
-                    
+
                     // Save remember me preference
-                    if (loginRequest.rememberMe) {
-                        sharedPrefs.putBoolean("remember_me", true)
+                    sharedPrefs.putBoolean("remember_me", loginRequest.rememberMe)
+
+                    // Get and save user token
+                    authRepository.getAccessToken()?.let { token ->
+                        sharedPrefs.putString("auth_token", token)
                     }
-                    
+
+                    // Get user data
+                    authRepository.getCurrentUser()?.let { user ->
+                        sharedPrefs.putString("user_id", user.id)
+                        sharedPrefs.putString("user_email", user.email ?: "")
+                    }
+
                     _loginState.value = LoginState.Success("Login successful")
                 } else {
-                    _loginState.value = LoginState.Error(
-                        response.errorBody()?.string() ?: "Login failed"
-                    )
+                    _loginState.value = LoginState.Error("Login failed - user not authenticated")
                 }
             } catch (e: Exception) {
                 _loginState.value = LoginState.Error(
